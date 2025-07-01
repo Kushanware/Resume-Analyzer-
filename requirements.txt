@@ -2,3 +2,4 @@ streamlit
 google-generativeai
 python.env
 pdf2image 
+python-dotenv
