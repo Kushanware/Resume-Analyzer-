@@ -45,35 +45,31 @@ def input_pdf_convert(uploaded_file):
 #streamlit app
 st.set_page_config(page_title="Resume Analyzer", page_icon=":books:", layout="wide")
 
-# Custom header with emoji and subtitle
-st.markdown("""
-<div style='text-align: center; padding: 1rem 0;'>
-    <h1 style='margin-bottom: 0.2em;'>📚 Resume Analyzer</h1>
-    <p style='font-size: 1.2em; color: #666;'>AI-powered resume and job description analysis</p>
-</div>
-""", unsafe_allow_html=True)
+# Native Streamlit header and subtitle
+st.title("📚 Resume Analyzer")
+st.subheader("AI-powered resume and job description analysis")
 
 # Main input area in columns
 col1, col2 = st.columns([1, 1])
 with col1:
-    input_text = st.text_area("**Job Description**", placeholder="Paste or type the job description here", key="input", height=200)
+    input_text = st.text_area("Job Description", placeholder="Paste or type the job description here", key="input", height=200)
 with col2:
-    uploaded_file = st.file_uploader("**Upload Your Resume (PDF)**", type=["pdf"])
+    uploaded_file = st.file_uploader("Upload Your Resume (PDF)", type=["pdf"])
     if uploaded_file is not None:
         st.success("PDF Uploaded Successfully")
 
 # Action buttons in a horizontal row
-st.markdown("<hr>", unsafe_allow_html=True)
+st.divider()
 col_btns = st.columns(3)
 with col_btns[0]:
-    submit1 = st.button("📝 Resume Analysis")
-    submit2 = st.button("💡 Highlight Skills")
+    submit1 = st.button("Resume Analysis")
+    submit2 = st.button("Highlight Skills")
 with col_btns[1]:
-    submit3 = st.button("🚀 Improve Skills")
-    submit4 = st.button("📊 Skills Match %")
+    submit3 = st.button("Improve Skills")
+    submit4 = st.button("Skills Match %")
 with col_btns[2]:
-    submit5 = st.button("⚠️ Resume Weaknesses")
-    submit6 = st.button("🤖 ATS Score")
+    submit5 = st.button("Resume Weaknesses")
+    submit6 = st.button("ATS Score")
 
 # Prompts (unchanged)
 input_prompt1 = """
@@ -95,38 +91,34 @@ input_prompt6 = """
 Assuming the resume will be passed through an Applicant Tracking System (ATS), evaluate how well it is optimized for ATS parsing. Provide an estimated ATS score (out of 100) based on keyword usage, formatting, relevance to the job description, and inclusion of required skills. Also, mention any issues that could prevent the resume from being properly parsed or ranked by the ATS.
 """
 
-# Card-style result display
-card_style = """
-    background-color: #343541;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    padding: 2rem;
-    margin: 1.5rem 0;
-    border: 1px solid #eee;
-"""
-
 if uploaded_file is not None:
     if submit1:
         pdf_content = input_pdf_convert(uploaded_file)
         response = get_gemini_response(input_text, pdf_content[0], input_prompt1)
-        st.markdown(f"<div style='{card_style}'><h3>📝 Resume Analysis</h3><div>{response}</div></div>", unsafe_allow_html=True)
+        st.subheader("Resume Analysis")
+        st.write(response)
     elif submit2:
         pdf_content = input_pdf_convert(uploaded_file)
         response = get_gemini_response(input_text, pdf_content[0], input_prompt2)
-        st.markdown(f"<div style='{card_style}'><h3>💡 Skills in the Resume</h3><div>{response}</div></div>", unsafe_allow_html=True)
+        st.subheader("Skills in the Resume")
+        st.write(response)
     elif submit3:
         pdf_content = input_pdf_convert(uploaded_file)
         response = get_gemini_response(input_text, pdf_content[0], input_prompt3)
-        st.markdown(f"<div style='{card_style}'><h3>🚀 Suggestions to Improve Skills</h3><div>{response}</div></div>", unsafe_allow_html=True)
+        st.subheader("Suggestions to Improve Skills")
+        st.write(response)
     elif submit4:
         pdf_content = input_pdf_convert(uploaded_file)
         response = get_gemini_response(input_text, pdf_content[0], input_prompt4)
-        st.markdown(f"<div style='{card_style}'><h3>📊 Skills Match Percentage</h3><div>{response}</div></div>", unsafe_allow_html=True)
+        st.subheader("Skills Match Percentage")
+        st.write(response)
     elif submit5:
         pdf_content = input_pdf_convert(uploaded_file)
         response = get_gemini_response(input_text, pdf_content[0], input_prompt5)
-        st.markdown(f"<div style='{card_style}'><h3>⚠️ Resume Weaknesses</h3><div>{response}</div></div>", unsafe_allow_html=True)
+        st.subheader("Resume Weaknesses")
+        st.write(response)
     elif submit6:
         pdf_content = input_pdf_convert(uploaded_file)
         response = get_gemini_response(input_text, pdf_content[0], input_prompt6)
-        st.markdown(f"<div style='{card_style}'><h3>🤖 Estimated ATS Score</h3><div>{response}</div></div>", unsafe_allow_html=True)
+        st.subheader("Estimated ATS Score")
+        st.write(response)
