@@ -7,7 +7,6 @@ import io
 import streamlit as st
 import os
 from  PIL import Image
-import pdf2image
 import fitz
 import google.generativeai as genai
 
@@ -24,18 +23,18 @@ def get_gemini_response(input,pdf_content,prompt):
     return response.text
 def input_pdf_convert(uploaded_file):
     if uploaded_file is not None:
-        images = pdf2image.convert_from_bytes(uploaded_file.read())
-        first_page = images[0]
+        # Read PDF bytes
+        pdf_bytes = uploaded_file.read()
+        doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+        page = doc.load_page(0)  # first page
+        pix = page.get_pixmap()
+        image_bytes_arr = io.BytesIO(pix.tobytes("jpeg"))
+        image_bytes_arr = image_bytes_arr.getvalue()
 
-        #converts to bytes
-        image_bytes_arr = io.BytesIO()
-        first_page.save(image_bytes_arr,format='JPEG')
-        image_bytes_arr=image_bytes_arr.getvalue()
-
-        pdf_parts=[
+        pdf_parts = [
             {
-                "mime_type":"image/jpeg",
-                "data":base64.b64encode(image_bytes_arr).decode()
+                "mime_type": "image/jpeg",
+                "data": base64.b64encode(image_bytes_arr).decode()
             }
         ]
         return pdf_parts
