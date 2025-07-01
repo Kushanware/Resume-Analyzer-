@@ -1,0 +1,13 @@
+prefix=D:/resume an/venv/Library
+exec_prefix=D:/resume an/venv/Library
+libdir=D:/resume an/venv/Library/lib
+sharedlibdir=D:/resume an/venv/Library/lib
+includedir=D:/resume an/venv/Library/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
