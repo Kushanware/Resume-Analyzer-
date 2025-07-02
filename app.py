@@ -88,8 +88,43 @@ input_prompt5 = """
 After comparing the resume with the job description, identify the key weaknesses or areas for improvement in the resume. This could include missing skills, lack of measurable achievements, formatting issues, vague statements, or outdated technologies. Be specific and constructive, and explain how these weaknesses might affect the chances of getting shortlisted for this particular role.
 """
 input_prompt6 = """
-Assuming the resume will be passed through an Applicant Tracking System (ATS), evaluate how well it is optimized for ATS parsing. Provide an estimated ATS score (out of 100) based on keyword usage, formatting, relevance to the job description, and inclusion of required skills. Also, mention any issues that could prevent the resume from being properly parsed or ranked by the ATS.
+You are an expert ATS system trained to evaluate resumes for job matching and parsing accuracy.
+
+I will provide you with:
+1. A job description
+2. A candidate's resume
+
+Your task is to perform a full ATS-focused analysis.
+
+Step-by-step, do the following:
+
+1. ATS Score (Out of 100)
+Break down the score into:
+- Keyword Match (30 points): Match of skills, tools, and job-specific terms
+- Formatting (15 points): Is the resume clean, parseable (no tables, images, fancy columns)?
+- Relevance (25 points): How well do the candidate's experience, education, and achievements fit the role?
+- Skills Coverage (20 points): Are required hard and soft skills from the JD mentioned?
+- Section Structure (10 points): Are standard headers like Education, Experience, Skills used?
+
+Then provide a final score out of 100 with a one-line summary.
+
+2. Parsing Issues
+List any formatting or structural issues that could prevent proper parsing by an ATS (e.g., images, tables, non-standard fonts, missing section headers, PDF problems, etc.)
+
+3. Suggestions to Improve ATS Optimization
+Provide 3–5 realistic suggestions to improve the resume’s chances of getting past ATS screening, especially for this job.
+
+Be strict but fair. Do not inflate the score — a good resume should score around 70–80. Only exceptional ones should score 90+.
+
+---
+
+Job Description:
+[Insert Job Description Here]
+
+Resume:
+[Insert Resume Text Here]
 """
+
 
 if uploaded_file is not None:
     if submit1:
