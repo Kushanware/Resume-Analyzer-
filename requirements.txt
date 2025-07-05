@@ -4,3 +4,4 @@ python.env
 pdf2image 
 python-dotenv
 PyMuPDF
+python-docx

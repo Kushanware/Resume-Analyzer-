@@ -6,6 +6,7 @@ from  PIL import Image
 import fitz
 import google.generativeai as genai
 
+
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 
@@ -44,6 +45,15 @@ st.set_page_config(page_title="Resume Analyzer", page_icon=":books:", layout="wi
 # Native Streamlit header and subtitle
 st.title("📚 Resume Analyzer")
 st.subheader("AI-powered resume and job description analysis")
+st.markdown("""
+    <head>
+        <title>Smart Resume Analyzer - AI Resume Insights</title>
+        <meta name="description" content="Analyze your resume using AI to optimize it for job applications and ATS systems. Get score, tips, and feedback instantly.">
+        <meta name="keywords" content="Resume Analyzer, Resume Scanner, ATS Resume Check, AI Resume Review, Smart Resume Tool">
+        <meta name="robots" content="index, follow">
+    </head>
+""", unsafe_allow_html=True)
+st.write("Optimize your resume with our smart analyzer. Get your ATS score and improve your chances of landing a job.")
 
 # Main input area in columns
 col1, col2 = st.columns([1, 1])
@@ -60,12 +70,16 @@ col_btns = st.columns(3)
 with col_btns[0]:
     submit1 = st.button("Resume Analysis")
     submit2 = st.button("Highlight Skills")
+    submit7 = st.button("Generate Cover Letter")
 with col_btns[1]:
     submit3 = st.button("Improve Skills")
     submit4 = st.button("Skills Match %")
+    submit8 = st.button("Question on resume ")
+   
 with col_btns[2]:
     submit5 = st.button("Resume Weaknesses")
     submit6 = st.button("ATS Score")
+   
 
 # Prompts (unchanged)
 input_prompt1 = """
@@ -108,7 +122,7 @@ Then provide a final score out of 100 with a one-line summary.
 List any formatting or structural issues that could prevent proper parsing by an ATS (e.g., images, tables, non-standard fonts, missing section headers, PDF problems, etc.)
 
 3. Suggestions to Improve ATS Optimization
-Provide 3–5 realistic suggestions to improve the resume’s chances of getting past ATS screening, especially for this job.
+Provide 3–5 realistic suggestions to improve the resume's chances of getting past ATS screening, especially for this job.
 
 Be strict but fair. Do not inflate the score — a good resume should score around 70–80. Only exceptional ones should score 90+.
 
@@ -120,7 +134,18 @@ Job Description:
 Resume:
 [Insert Resume Text Here]
 """
+input_prompt7= """
+You are an expert career coach and professional writer. Using the provided resume and job description, write a tailored cover letter for the candidate to apply for this job. The letter should be professional, concise, and highlight the candidate's most relevant skills and experiences for the role.
+"""
+input_prompt8= """
+You are a highly experienced HR specialist and resume strategist. I want you to act like the best recruiter in the industry who screens thousands of resumes and knows exactly what hiring managers and ATS systems look for.
 
+Based on my resume (provided below), generate thought-provoking and improvement-focused questions that will help me:
+
+
+
+If I also provide a job description, customize your questions to match that role. Focus on:
+"""
 
 if uploaded_file is not None:
     if submit1:
@@ -153,3 +178,16 @@ if uploaded_file is not None:
         response = get_gemini_response(input_text, pdf_content[0], input_prompt6)
         st.subheader("Estimated ATS Score")
         st.write(response)
+    elif submit7:
+        pdf_content = input_pdf_convert(uploaded_file)
+        response = get_gemini_response(input_text, pdf_content[0], input_prompt7)
+        st.subheader("Generated Cover Letter")
+        st.write(response)
+        st.download_button("Download Cover Letter", response, file_name="cover_letter.txt")
+    elif submit8:
+        pdf_content = input_pdf_convert(uploaded_file)
+        response = get_gemini_response(input_text, pdf_content[0], input_prompt8)
+        st.subheader("Questions on resume")
+        st.write(response)
+        
+   
