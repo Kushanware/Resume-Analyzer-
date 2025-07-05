@@ -83,19 +83,29 @@ with col_btns[2]:
 
 # Prompts (unchanged)
 input_prompt1 = """
-You are an experienced HR manager and resume analyst. I have provided a resume and a job description. Please analyze both in detail and provide a professional assessment of the resume in the context of the job description. Mention how well the resume aligns with the job requirements, the strengths of the candidate, and any significant gaps or mismatches. Also, highlight whether the resume would be compelling to a recruiter for this specific job role.
+You are an experienced HR manager and resume analyst. Analyze the provided resume and job description in detail. In your response, include:
+- A summary of how well the resume aligns with the job requirements.
+- The candidate's key strengths relevant to the job.
+- Any significant gaps or mismatches.
+- Whether the resume would be compelling to a recruiter for this specific role.
+Please provide your assessment in clear, actionable bullet points.
 """
 input_prompt2 = """
-Based on the resume provided, identify and list all the key technical skills, soft skills, certifications, tools, and technologies mentioned. Categorize them if possible (e.g., Programming Languages, Tools & Platforms, Communication Skills, etc.). This will help in evaluating the skill set of the candidate more effectively.
+Review the provided resume and extract all key skills, certifications, tools, and technologies. Organize them into categories such as:
+- Technical Skills (e.g., programming languages, frameworks)
+- Soft Skills (e.g., communication, teamwork)
+- Certifications
+- Tools & Platforms
+Present your findings in a structured list or table.
 """
 input_prompt3 = """
-Compare the skills listed in the resume with the skills required in the job description. Identify the missing or underdeveloped skills that are critical for the job role. Suggest practical ways the candidate can improve these skills — for example, through specific certifications, online courses, projects, or experiences. Please also highlight which of the existing skills should be enhanced further to improve job readiness.
+Compare the skills in the resume with those required in the job description. For each missing or underdeveloped skill, suggest practical ways to improve (e.g., recommended courses, certifications, or projects). Also, highlight which existing skills should be further developed. Prioritize the most critical skill gaps for the job.
 """
 input_prompt4 = """
-Evaluate the resume against the job description and calculate the percentage of skill match. Provide a breakdown of how many required skills are present in the resume and how many are missing. Mention which skills are a perfect match, partial match, or missing entirely. Based on this, give a realistic skill alignment percentage to reflect how well the candidate fits the role.
+Compare the required skills from the job description with those in the resume. For each skill, indicate if it is a perfect match, partial match, or missing. Calculate the percentage of required skills present in the resume and explain your calculation. Present your findings in a table and provide a final skill alignment percentage.
 """
 input_prompt5 = """
-After comparing the resume with the job description, identify the key weaknesses or areas for improvement in the resume. This could include missing skills, lack of measurable achievements, formatting issues, vague statements, or outdated technologies. Be specific and constructive, and explain how these weaknesses might affect the chances of getting shortlisted for this particular role.
+Identify and list the main weaknesses or areas for improvement in the resume, considering the job description. For each weakness (e.g., missing skills, lack of achievements, formatting issues), explain its impact on job prospects and provide specific, actionable suggestions to address it. Prioritize the most critical weaknesses.
 """
 input_prompt6 = """
 You are an expert ATS system trained to evaluate resumes for job matching and parsing accuracy.
@@ -126,6 +136,8 @@ Provide 3–5 realistic suggestions to improve the resume's chances of getting p
 
 Be strict but fair. Do not inflate the score — a good resume should score around 70–80. Only exceptional ones should score 90+.
 
+At the end, provide a summary table of your scoring breakdown.
+
 ---
 
 Job Description:
@@ -135,16 +147,14 @@ Resume:
 [Insert Resume Text Here]
 """
 input_prompt7= """
-You are an expert career coach and professional writer. Using the provided resume and job description, write a tailored cover letter for the candidate to apply for this job. The letter should be professional, concise, and highlight the candidate's most relevant skills and experiences for the role.
+Write a professional and concise cover letter tailored to the provided resume and job description. The letter should include:
+- A brief introduction
+- A body highlighting the candidate's most relevant skills and experiences
+- A closing statement expressing interest in the role
+Limit the letter to 3–4 paragraphs.
 """
 input_prompt8= """
-You are a highly experienced HR specialist and resume strategist. I want you to act like the best recruiter in the industry who screens thousands of resumes and knows exactly what hiring managers and ATS systems look for.
-
-Based on my resume (provided below), generate thought-provoking and improvement-focused questions that will help me:
-
-
-
-If I also provide a job description, customize your questions to match that role. Focus on:
+You are a highly experienced HR specialist and resume strategist. Based on my resume (and job description, if provided), generate 5–7 thought-provoking, improvement-focused questions that will help me strengthen my resume and better align it with the target role. Focus on areas such as skill gaps, achievements, clarity, and relevance to the job.
 """
 
 if uploaded_file is not None:
