@@ -4,8 +4,11 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.0+-red.svg)](https://streamlit.io)
 [![Google AI](https://img.shields.io/badge/Google%20AI-Gemini-green.svg)](https://ai.google.dev)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Try%20Now-brightgreen.svg)](http://resumecheckpro.streamlit.app/)
 
 > **AI-powered resume analysis that gets you hired faster**
+
+🚀 **[Try ResumeCheck Pro Live →](http://resumecheckpro.streamlit.app/)**
 
 Transform your job application process with cutting-edge AI technology. ResumeCheck Pro provides comprehensive resume analysis, personalized improvement recommendations, and ATS optimization to maximize your chances of landing your dream job.
 
@@ -41,6 +44,10 @@ Transform your job application process with cutting-edge AI technology. ResumeCh
 - Google AI API key ([Get yours here](https://aistudio.google.com/app/apikey))
 
 ### Quick Start
+
+🌐 **[Try it live now →](http://resumecheckpro.streamlit.app/)** *(No installation required!)*
+
+**Or run locally:**
 
 1. **Clone the repository**
    ```bash
@@ -243,6 +250,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 *Star ⭐ this repository if it helped you land your dream job!*
 
-[🎯 Try ResumeCheck Pro](https://resume-analyzer.streamlit.app) | [📖 Documentation](docs/) | [🐛 Report Bug](https://github.com/Kushanware/Resume-Analyzer-/issues) | [💡 Request Feature](https://github.com/Kushanware/Resume-Analyzer-/issues)
+[🚀 **Try ResumeCheck Pro Live**](http://resumecheckpro.streamlit.app/) | [📖 Documentation](docs/) | [🐛 Report Bug](https://github.com/Kushanware/Resume-Analyzer-/issues) | [💡 Request Feature](https://github.com/Kushanware/Resume-Analyzer-/issues)
 
 </div>
